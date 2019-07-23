@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tveName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/tvName"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/eeName"
+                android:hint="@string/eHint"
+                android:singleLine="true"
+                />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvStart"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/tveStart"
+                />
+            <TimePicker
+                android:id="@+id/tpeStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvEnd"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/tveEnd"
+                />
+            <TimePicker
+                android:id="@+id/tpeEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvRep"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/tveRep"
+                />
+
+            <CheckBox
+                android:id="@+id/cbeSun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SUNDAY"
+                />
+
+            <CheckBox
+                android:id="@+id/cbeMon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MONDAY" />
+
+            <CheckBox
+                android:id="@+id/cbeTue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TUESDAY" />
+
+            <CheckBox
+                android:id="@+id/cbeWed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WEDNESDAY" />
+
+            <CheckBox
+                android:id="@+id/cbeThu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="THURSDAY" />
+
+            <CheckBox
+                android:id="@+id/cbeFri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FRIDAY" />
+
+            <CheckBox
+                android:id="@+id/cbeSat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SATURDAY" />
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/bUpdate"
+            android:textSize="20dp"
+            android:id="@+id/beupdate"
+            />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="@string/bDelete"
+            android:textSize="20dp"
+            android:id="@+id/beDelete"
+            />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="@string/bCancel"
+            android:textSize="20dp"
+            android:id="@+id/beCancel"
+            />
+    </LinearLayout>
+
+</LinearLayout>
