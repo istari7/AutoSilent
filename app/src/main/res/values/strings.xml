@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">QuickkSilent</string>
+
+
+    <string name="bCreate">CREATE</string>
+    <string name="bView">VIEW</string>
+    <string name="bExit">EXIT</string>
+    <string name="tvStart">START TIME</string>
+    <string name="tvEnd">END TIME</string>
+    <string name="tvName">NAME</string>
+    <string name="eHint">Type A Name</string>
+    <string name="bCancel">CANCEL</string>
+    <string name="bSave">SAVE</string>
+    <string name="lMenu">MENU</string>
+    <string name="lViewData">VIEW TIME</string>
+    <string name="lCreateTime">TIME</string>
+    <string name="bTime">TIME</string>
+    <string name="bGps">LOCATION</string>
+    <string name="lCreate">CREATE</string>
+    <string name="tvGPS">LOCATION</string>
+    <string name="eHintGPS">Select Location</string>
+    <string name="bSet">SET</string>
+    <string name="lCreateGps">LOCATION</string>
+    <string name="lLocation">MAP</string>
+    <string name="tvRadius">RADIUS</string>
+    <string name="eHintRadius">ENTER RADIUS IN METERS</string>
+    <string name="lViewGps">VIEW LOCATION</string>
+    <string name="lView">VIEW</string>
+    <string name="lEditGps">VIEW LOCATION</string>
+    <string name="bUpdate">UPDATE</string>
+    <string name="bDelete">DELETE</string>
+    <string name="tvRep">REPEAT</string>
+    <string name="lEditTime">EDIT TIME</string>
+</resources>
+
+
