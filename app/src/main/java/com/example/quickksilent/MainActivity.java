@@ -17,10 +17,22 @@ public class MainActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onCreate(splashState);
         setContentView(R.layout.activity_main);
-        Intent openMenu = new Intent(MainActivity.this, Menu.class);
-        startActivity(openMenu);
-
+        Thread timer = new Thread() {
+            public void run() {
+                try {
+                    sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    Intent openMenu = new Intent(MainActivity.this, Menu.class);
+                    startActivity(openMenu);
+                    finish();
+                }
+            }
+        };
+        timer.start();
     }
+
 
     @Override
     protected void onPause() {

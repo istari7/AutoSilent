@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuickkSilent</string>
+    <string name="app_name">AutoSilent</string>
 
 
     <string name="bCreate">CREATE</string>
@@ -31,6 +31,7 @@
     <string name="bDelete">DELETE</string>
     <string name="tvRep">REPEAT</string>
     <string name="lEditTime">EDIT TIME</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
 
 

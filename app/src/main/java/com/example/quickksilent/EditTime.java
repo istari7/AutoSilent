@@ -316,6 +316,9 @@ public class EditTime extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
+        Intent openTimeView = new Intent(EditTime.this,Menu.class);
+        startActivity(openTimeView);
+        finish();
     }
 
     @Override

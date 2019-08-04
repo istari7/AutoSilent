@@ -42,7 +42,7 @@ public class CreateTime extends AppCompatActivity {
         fri = (CheckBox) findViewById(R.id.cbFri);
         sat = (CheckBox) findViewById(R.id.cbSat);
         save =  findViewById(R.id.bSave);
-        cancel =  findViewById(R.id.bCancel);
+        cancel =  findViewById(R.id.beCancel);
 
         DatabaseHelper entry = new DatabaseHelper(CreateTime.this);
         entry.open();

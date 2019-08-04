@@ -1,31 +1,42 @@
 package com.example.quickksilent;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class Menu extends AppCompatActivity {
+    private static final String TAG = "Menu";
 
+    private static final int ERROR_DIALOG_REQUEST = 9001;
     private ListView lv;
     private ArrayAdapter<String> listAdapter ;
     DatabaseHelper db ;
     FloatingActionButton exit;
+    Button bt;
     FloatingActionButton createTime;
     @Override
     protected void onCreate(Bundle menuState) {
         // TODO Auto-generated method stub
         super.onCreate(menuState);
         setContentView(R.layout.activity_menu);
-
+        if(isServicesOK()){
+            init();
+        }
 
         //create = (Button) findViewById(R.id.bCreate);
         //viewdata = (Button) findViewById(R.id.bView);
@@ -68,25 +79,7 @@ public class Menu extends AppCompatActivity {
                 finish();
             }
         });
-      /**  create.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent openCreate = new Intent(Menu.this,Create.class);
-                startActivity(openCreate);
-                finish();
-            }
-        });
-        viewdata.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent openView = new Intent(Menu.this,ViewStoredData.class);
-                startActivity(openView);
-                finish();
-            }
-        });
-       */
         exit.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -95,12 +88,46 @@ public class Menu extends AppCompatActivity {
             }
         });
     }
+    private void init(){
+        bt = findViewById(R.id.mapb);
+        bt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent some = new Intent(Menu.this,MapsActivity.class);
+                startActivity(some);
+
+
+            }
+        });
+
+    }
+    public boolean isServicesOK(){
+        Log.d(TAG, "isServicesOK: checking google services version");
+
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(Menu.this);
+
+        if(available == ConnectionResult.SUCCESS){
+            //everything is fine and the user can make map requests
+            Log.d(TAG, "isServicesOK: Google Play Services is working");
+            return true;
+        }
+        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            //an error occured but we can resolve it
+            Log.d(TAG, "isServicesOK: an error occured but we can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(Menu.this, available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        }else{
+            Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
 
     public void onBackPressed() {
         // TODO Auto-generated method stub
-      /**  Intent openView = new Intent(Menu.this,ViewStoredData.class);
-        startActivity(openView);
-        finish();*/
+        finish();
+
     }
 
     @Override

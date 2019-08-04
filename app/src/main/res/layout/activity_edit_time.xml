@@ -7,6 +7,17 @@
     android:orientation="vertical">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/beCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="12dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/beDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +62,7 @@
                 android:text="Start Time"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TimePicker
                 android:id="@+id/tpStart"
@@ -86,59 +97,53 @@
                 android:id="@+id/cbSun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="SUNDAY" />
 
             <CheckBox
                 android:id="@+id/cbMon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="MONDAY" />
 
             <CheckBox
                 android:id="@+id/cbTue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="TUESDAY" />
 
             <CheckBox
                 android:id="@+id/cbWed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="WEDNESDAY" />
 
             <CheckBox
                 android:id="@+id/cbThu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="THURSDAY" />
 
             <CheckBox
                 android:id="@+id/cbFri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="FRIDAY" />
 
             <CheckBox
                 android:id="@+id/cbSat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="SATURDAY" />
 
         </LinearLayout>
     </ScrollView>
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/beCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
-        android:clickable="true"
-        app:backgroundTint="#FA0C0C"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
 
 
     <com.google.android.material.textfield.TextInputLayout
