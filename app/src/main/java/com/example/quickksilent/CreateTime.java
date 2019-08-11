@@ -47,7 +47,7 @@ public class CreateTime extends AppCompatActivity {
         DatabaseHelper entry = new DatabaseHelper(CreateTime.this);
         entry.open();
         checkName = new ArrayList<String>();
-        checkName = entry.tgetname();
+        checkName = entry.tgetname(); //get all names from db and save in checkname array
         entry.close();
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +80,10 @@ public class CreateTime extends AppCompatActivity {
                     sqlrep = sqlrep + "7";
                 }
                 sqlrep.trim();
-                if(!sqlname.equals("")){
-                    if(!checkName.contains(sqlname)){
+                if(!sqlname.equals(""))//Not empty
+                {
+                    if(!checkName.contains(sqlname))//Not in database already
+                    {
                         if(sqlstart != sqlend){
                             DatabaseHelper entry = new DatabaseHelper(CreateTime.this);
                             entry.open();

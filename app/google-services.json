@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "252161225364",
+    "firebase_url": "https://quickksilent.firebaseio.com",
+    "project_id": "quickksilent",
+    "storage_bucket": "quickksilent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252161225364:android:1210b79d654b0c30",
+        "android_client_info": {
+          "package_name": "com.example.quickksilent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252161225364-gq60iehjlj1nd6lro56dpnglrkdto4r9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quickksilent",
+            "certificate_hash": "ba054aaca5f0721f341187628e1b360e8c909c5e"
+          }
+        },
+        {
+          "client_id": "252161225364-3u5fnc0eq5371n3ulk4kpqjoc1vv2747.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuCW7JdCYqhpcBB5sgoYOWNljmlmTU9CI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252161225364-3u5fnc0eq5371n3ulk4kpqjoc1vv2747.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

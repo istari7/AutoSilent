@@ -22,16 +22,31 @@ public class DatabaseHelper {
     public static final String KEY_LOC = "location_geopoint";
     public static final String KEY_RAD = "location_radius";
 
-    private static final String DATABASE_NAME = "mobile_mode_enforcer";
+    //location table
+
+    public static final String ROW_ID = "id";
+    public static final String TITLE = "locname";
+
+    public static final String LAT = "lat";
+    public static final String LNG = "lng";
+    public static final String RADIUS = "rad";
+    public static final String ACTIVE = "active";
+
+    private static final String DB_TABLE = "locaa";
+
+    //end table
+
+    private static final String DATABASE_NAME = "autosilen";
     private static final String DATABASE_TTABLE = "time";
+    //Niche waala used hai
     private static final String DATABASE_TABLE = "location";
     private static final int DATABASE_VERSION = 1;
 
-    private DbHelper ourHelper;
+    public DbHelper ourHelper;
     private final Context ourContext;
     private SQLiteDatabase ourDatabase;
 
-    private static class DbHelper extends SQLiteOpenHelper {
+    public static class DbHelper extends SQLiteOpenHelper {
 
         public DbHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -50,11 +65,26 @@ public class DatabaseHelper {
             );
 
             db.execSQL("CREATE TABLE "+DATABASE_TABLE+" ("+
-                    KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                    KEY_ROWID+" INTEGER, "+
                     KEY_NAME+" TEXT NOT NULL, "+
                     KEY_LOC+" TEXT NOT NULL, "+
                     KEY_RAD+" TEXT NOT NULL);"
             );
+            //Remove this. It has never worked
+            String query = "CREATE TABLE IF NOT EXISTS " +
+                    DB_TABLE +
+                    "(" +
+                    "'id' integer," +
+                    "'locname' text," +
+                    "'lat' text," +
+                    "'lng' text," +
+                    "'rad' integer," +
+                    "'active' integer);";
+            db.execSQL(query);
+            /**
+             * Last table is for location. Not fuckin tested?
+             *
+             */
         }
 
         @Override
@@ -62,6 +92,7 @@ public class DatabaseHelper {
             // TODO Auto-generated method stub
             db.execSQL("DROP TABLE IF EXISTS "+DATABASE_TTABLE);
             db.execSQL("DROP TABLE IF EXISTS "+DATABASE_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS "+ DB_TABLE);
             onCreate(db);
         }
 
@@ -89,6 +120,19 @@ public class DatabaseHelper {
         cv.put(KEY_TEND, sqlend);
         cv.put(KEY_TREP, sqlrepeat);
         return ourDatabase.insert(DATABASE_TTABLE, null, cv);
+    }
+    public long insertCord(int id,String name, String lat, String lon,int radius,int active) {
+        // TODO Auto-generated method stub
+        ContentValues cv = new ContentValues();
+        cv.put(ROW_ID, id);
+        cv.put(TITLE, name);
+        cv.put(LAT, lat);
+        cv.put(LNG,lon);
+        cv.put(RADIUS,radius);
+        //Change to take input
+        cv.put(ACTIVE,active);
+
+        return ourDatabase.insert(DB_TABLE, null, cv);
     }
 
     public ArrayList<String> tgetname(){
@@ -172,7 +216,7 @@ public class DatabaseHelper {
         return ourDatabase.insert(DATABASE_TABLE, null, cv);
     }
 
-    public ArrayList<String> getname(){
+    public ArrayList<String> getname() {
 
         String[] columns = new String[]{KEY_ROWID,KEY_NAME,KEY_LOC,KEY_RAD};
         Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
@@ -191,12 +235,9 @@ public class DatabaseHelper {
 
         String[] columns = new String[]{KEY_ROWID,KEY_NAME,KEY_LOC,KEY_RAD};
         Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
-
         int iLoc = c.getColumnIndex(KEY_LOC);
         int iRad = c.getColumnIndex(KEY_RAD);
-
         ArrayList<String> locrad = new ArrayList<String>();
-
         for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
             locrad.add(c.getString(iLoc)+"/"+c.getString(iRad));
         }
@@ -231,6 +272,56 @@ public class DatabaseHelper {
 
     public void deleteEntry(String name){
         ourDatabase.delete(DATABASE_TABLE, KEY_NAME+" LIKE '"+name+"'", null);
+    }
+    /**
+     * Queries for the location table shit from here on
+     *
+     */
+
+    public long insert(ContentValues contentValues){
+        long rowID = ourDatabase.insert(DB_TABLE, null, contentValues);
+        return rowID;
+    }
+
+    /**
+     * Right here you will get the name of the location latitude of the location
+     * It is the only parameter that will be returned.
+     * get the latitude solely
+     * Just test the demo on a working activity bar.
+     *public ArrayList<String> getname() {
+     *
+     *         String[] columns = new String[]{KEY_ROWID,KEY_NAME,KEY_LOC,KEY_RAD};
+     *         Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
+     *
+     *         int iName = c.getColumnIndex(KEY_NAME);
+     *         ArrayList<String> name = new ArrayList<String>();
+     *
+     *         for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+     *             name.add(c.getString(iName));
+     *         }
+     *         c.close();
+     *         return name;
+     *     }
+     *     public static final String ROW_ID = "_id";
+     *     public static final String TITLE = "locname";
+     *
+     *     public static final String LAT = "lat";
+     *     public static final String LNG = "lng";
+     *     public static final String RADIUS = "rad";
+     *     public static final String ACTIVE = "active";
+     */
+    public ArrayList<String> getLatitude(){
+
+        String[] columns = new String[]{ROW_ID,TITLE,LAT,LNG,RADIUS,ACTIVE};
+        Cursor c = ourDatabase.query(DB_TABLE,columns,null,null,null,null,null);
+        int iLat = c.getColumnIndex(LAT);
+        ArrayList<String> locat = new ArrayList<String>();
+        for(c.moveToFirst();!c.isAfterLast();c.moveToFirst()){
+            locat.add(c.getString(iLat));
+        }
+        c.close();
+        return locat;
+
     }
 
 }

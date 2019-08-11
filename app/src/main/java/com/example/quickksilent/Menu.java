@@ -89,12 +89,12 @@ public class Menu extends AppCompatActivity {
         });
     }
     private void init(){
-        bt = findViewById(R.id.mapb);
+        bt = findViewById(R.id.map);
         bt.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent some = new Intent(Menu.this,MapsActivity.class);
+                Intent some = new Intent(Menu.this,MapList.class);
                 startActivity(some);
 
 
