@@ -12,8 +12,12 @@ final class Constants {
 
     private Constants() {
     }
+    public void setValues(){
 
-    private static final String PACKAGE_NAME = "com.google.android.gms.location.Geofence";
+
+    }
+//Changed this
+    private static final String PACKAGE_NAME = "com.example.quickksilent";
 
     static final String GEOFENCES_ADDED_KEY = PACKAGE_NAME + ".GEOFENCES_ADDED_KEY";
 
@@ -21,14 +25,14 @@ final class Constants {
      * Used to set an expiration time for a geofence. After this amount of time Location Services
      * stops tracking the geofence.
      */
-    private static final long GEOFENCE_EXPIRATION_IN_HOURS = 12;
+    private static final long GEOFENCE_EXPIRATION_IN_HOURS = 1440;
 
     /**
      * For this sample, geofences expire after twelve hours.
      */
     static final long GEOFENCE_EXPIRATION_IN_MILLISECONDS =
             GEOFENCE_EXPIRATION_IN_HOURS * 60 * 60 * 1000;
-    static final float GEOFENCE_RADIUS_IN_METERS = 1609; // 1 mile, 1.6 km
+    static final float GEOFENCE_RADIUS_IN_METERS = 100; // 100m for now
 
     /**
      * Map for storing information about airports in the San Francisco bay area.

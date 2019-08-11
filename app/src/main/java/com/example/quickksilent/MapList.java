@@ -15,67 +15,50 @@ import android.widget.Toast;
 import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firestore.v1.Cursor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MapList extends AppCompatActivity {
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG ="MapList";
     private static final int ERROR_DIALOG_REQ = 9001;
     private ListView lv;
-    private Button mapb,listb;
-    private ArrayAdapter<String> listAdapter;
+    private FloatingActionButton mapb;
     private ArrayList<String> al;
+    private ArrayList<String> al_copy;
+    private ArrayAdapter<String> adapter;
 
+    public void populateList(){
+         final ArrayList<String> name = new ArrayList<String>();
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_list);
+
         mapb = findViewById(R.id.gotomap);
-        listb = findViewById(R.id.listdisp);
-        lv = findViewById(R.id.listview);
-       //chrome al = new ArrayList<String>();
-
-        listb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                db.collection("locations")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Toast.makeText(getApplicationContext(),document.getId(),Toast.LENGTH_SHORT).show();
-
-                                    //    al.add(document.getId().toString());
-                                        Toast.makeText(getApplicationContext(),document.get("latitude").toString(),Toast.LENGTH_SHORT).show();
-                                        Log.d(TAG, document.getId() + " => " + document.getData());
-                                    }
-                                    //listAdapter = new ArrayAdapter<String>(MapList.this,android.R.layout.simple_list_item_2,al);
-                              //      lv.setAdapter(listAdapter);
-                                } else {
-                                    Log.w(TAG, "Error getting documents.", task.getException());
-                                }
-                            }
-                        });
+        lv= (ListView) findViewById(R.id.listview);
+        //Method to populate list
+        //Only name displayed right now in the list
+        populateList();
 
 
 
-            }
 
 
-        });
-        //Code starts from here for displaying lists
 
-         //Ends for displaying the list. Code for transfering from one part of the app
-        //to another for entering shit
         mapb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

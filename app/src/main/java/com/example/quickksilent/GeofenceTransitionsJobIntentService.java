@@ -63,7 +63,7 @@ public class GeofenceTransitionsJobIntentService extends JobIntentService {
         int geofenceTransition = geofencingEvent.getGeofenceTransition();
 
         // Test that the reported transition was of interest.
-        //From dwell to enter
+        //to dwell from enter
         if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_DWELL ||
                 geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {
 

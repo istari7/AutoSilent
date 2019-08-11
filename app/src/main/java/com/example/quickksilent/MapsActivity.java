@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -24,26 +25,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-/**
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-*/
-import android.content.ContentValues;
-import android.content.Context;
 
 
 import java.util.HashMap;
@@ -76,6 +66,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -85,6 +77,7 @@ import static java.lang.Thread.sleep;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, OnCompleteListener<Void> {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     //GEofence req code
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
 
@@ -110,6 +103,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     // Buttons for kicking off the process of adding or removing geofences.
     private Button mAddGeofencesButton;
+
+    //Removing Geofences not here
     private Button mRemoveGeofencesButton;
 
     //idk?
@@ -126,9 +121,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap = googleMap;
 
 
-            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
-                public void onMapLongClick(final LatLng arg0) {
+                public void onMapClick(final LatLng arg0) {
                     mMap.clear();
 /**
  * You have no idea what this code is about,test it out
@@ -140,40 +135,32 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
  */
                     mMap.addMarker(new MarkerOptions()
                             .position(arg0)
-                            .title("Set Location")
+                            .title("Geofence this Location")
                             .icon(BitmapDescriptorFactory
                                     .defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
-                    
+                   //Creating the shit just in case
                     final Double lati = (arg0.latitude);
                     final Double loni = (arg0.longitude);
-                    Toast.makeText(getApplicationContext(),""+lati,Toast.LENGTH_SHORT).show();
-                    try{
-                        sleep(2000);
-                    }
-                    catch (InterruptedException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getApplicationContext(),""+e,Toast.LENGTH_SHORT).show();
-                    }
-                    Toast.makeText(getApplicationContext(),""+loni,Toast.LENGTH_SHORT).show();
                     final String aLatPlace = lati.toString();
                     final String aLongPlace = loni.toString();
+                    //DIsplay the latitude and Longitude
 
+                    Toast.makeText(getApplicationContext(),""+lati,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),""+loni,Toast.LENGTH_SHORT).show();
                     Log.d("Latitude",""+lati);
                      Log.d("Longitude",""+loni);
-                    //  Log.d("Latitude_String",aLatPlace);
-                    //  Log.d("Longitude_String",aLongPlace);
+
                    bt.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View view) {
                        //  aftersettingMarker(aLatPlace,aLongPlace);
                            Map<String, Object> gps = new HashMap<>();
                            gps.put("active",true);
-                           gps.put("id", 2);
-                           gps.put("latitude", aLatPlace);
-                           gps.put("longitude", aLongPlace);
-                           //Insert prompt here for name or should i use a geolocator
-                           gps.put("name","College Time");
-                           gps.put("radius",50);
+                           //Get user email after authentication.
+                           gps.put("id", "email");
+                           gps.put("location", arg0);
+                           gps.put("name","Random Place 2");
+                          //No need for radius and shit. Khud se kardo by default
 
 // Add a new document with a generated ID
                            db.collection("locations")
@@ -350,7 +337,38 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mGeofencePendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         return mGeofencePendingIntent;
     }
+    private HashMap<String,Object> returnSavedGeopoints(){
+        final HashMap<String,Object> mp = new HashMap<String, Object>() {};
 
+        db.collection("locations")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                mp.put(document.get("name").toString(),document.get("location"));
+
+
+                            }
+
+
+
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                            //Snackbar.make(View ,"Fault",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+
+                        }
+                    }
+                });
+
+        return mp;
+
+    }
     private void populateGeofenceList() {
         //cannot reference not static shit in a static way.
         for (Map.Entry<String, LatLng> entry : Constants.GEOFENCE_PONTS.entrySet()) {

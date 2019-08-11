@@ -70,6 +70,10 @@
     <string name="permission_denied_explanation">Permission was denied, but is needed for core
         functionality.</string>
     <string name="settings">Settings</string>
+
+
+
+
 </resources>
 
 
