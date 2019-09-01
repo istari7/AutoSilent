@@ -28,7 +28,7 @@ The project utilises Google Web API's extensively and several key components wil
 # Key Screenshots
 ##  1. Time Controlled Ringer Settings
 
- ![Image of Time Activity](/home/techtariq/Downloads/tempro/QuickkSilent/time.png)
+ ![Image of Time Activity](https://github.com/istari7/QuickkSilent/blob/FInal-iter-1/time.png)
 
 **Here based on the time ranger set. The phone gets silent in the time and once the timer expires,the phone is then reverted to normal mode**
 
@@ -44,12 +44,12 @@ The project utilises Google Web API's extensively and several key components wil
 
 ## 3. Firebase List in the App
 
-![Image of Firebase List](/home/techtariq/Downloads/tempro/QuickkSilent/firebase_list.png)
+![Image of Firebase List](https://github.com/istari7/QuickkSilent/blob/FInal-iter-1/firebase_list.png)
 **Here the lcoation is extracted from the Google Firebase and geofences are active. If a person comes within a 400m radius of the location, the phone becomes silent. Once the user exits the location, the phone becomes normal again.**
 
 ## 4. Firebase Data Model
 
-![Image of Firebase List](/home/techtariq/Downloads/tempro/QuickkSilent/data_firebase.png)
+![Image of Firebase List](https://github.com/istari7/QuickkSilent/blob/FInal-iter-1/data_firebase.png)
 This is a **SAMPLE** example of how i have organised the data.
 
 # Contributing
