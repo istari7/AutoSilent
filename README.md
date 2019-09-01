@@ -23,7 +23,9 @@ A working knowledge of these will help you out a lot more and make the program m
 
 
 # Important Note:
-The project utilises Google Web API's extensively and several key components will be redacted later on to prevent key leaks. Since this is a demo for now, all the files have been included. As components are removed. I shall include a tutorial to code those components from scratch.
+I built this project from scratch and learnt a lot. Some of the things you will learn by using this project as a guideline are, Java for Android, Location API's, Google Services API, SQLITE, Gradle (for handling various dependencies). Also using web services one can build scalable systems while keeping efficiency in consideration. Best of luck. Also --
+**The project utilises Google Web API's extensively and several key components will be redacted later on to prevent key leaks. Since this is a demo for now, all the files have been included. As components are removed. I shall include a tutorial to code those components from scratch.**
+
 
 # Key Screenshots
 ##  1. Time Controlled Ringer Settings
