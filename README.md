@@ -36,7 +36,7 @@ The project utilises Google Web API's extensively and several key components wil
 
 ## 2. Location Controlled Ringer Settings
 
-![Image of Location Activity](/home/techtariq/Downloads/tempro/QuickkSilent/location.png)
+![Image of Location Activity](https://github.com/istari7/QuickkSilent/blob/FInal-iter-1/location.png)
 
 
 **Here once a paticular location is marked on the map. The location name is displayed to the user and the location is added to the database later on if  the add geofence button is clicked**
