@@ -8,7 +8,7 @@ Maximum Api Level - Pie      (9.0)
 # Installation
 1. Clone the git repository
     ```
-    https://github.com/istari7/QuickkSilent.git
+    https://github.com/istari7/AutoSilent.git
     ```
 2. Open the folder in Android Studio and complete the gradle sync. Gradle will take care to download all the dependencies
 
