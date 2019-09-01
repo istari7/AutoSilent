@@ -6,16 +6,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/beCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="12dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/beDelete"
@@ -27,7 +17,8 @@
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:maxImageSize="55dp"
+        app:srcCompat="@drawable/removei" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/beUpdate"
@@ -38,7 +29,8 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:maxImageSize="54dp"
+        app:srcCompat="@drawable/tick" />
 
     <ScrollView
         android:id="@+id/scrollView2"

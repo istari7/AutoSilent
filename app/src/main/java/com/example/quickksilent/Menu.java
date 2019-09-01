@@ -1,10 +1,10 @@
 package com.example.quickksilent;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.app.Dialog;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,21 +26,14 @@ public class Menu extends AppCompatActivity {
     private ListView lv;
     private ArrayAdapter<String> listAdapter ;
     DatabaseHelper db ;
-    FloatingActionButton exit;
-    Button bt;
+    FloatingActionButton mb;
     FloatingActionButton createTime;
     @Override
     protected void onCreate(Bundle menuState) {
         // TODO Auto-generated method stub
         super.onCreate(menuState);
         setContentView(R.layout.activity_menu);
-        if(isServicesOK()){
-            init();
-        }
 
-        //create = (Button) findViewById(R.id.bCreate);
-        //viewdata = (Button) findViewById(R.id.bView);
-        exit =  findViewById(R.id.bExit);
         lv = (ListView)findViewById(R.id.listview);
         db = new DatabaseHelper(Menu.this);
         db.open();
@@ -80,48 +73,9 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        exit.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                finish();
-            }
-        });
     }
-    private void init(){
-        bt = findViewById(R.id.mapb);
-        bt.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent some = new Intent(Menu.this,MapsActivity.class);
-                startActivity(some);
 
 
-            }
-        });
-
-    }
-    public boolean isServicesOK(){
-        Log.d(TAG, "isServicesOK: checking google services version");
-
-        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(Menu.this);
-
-        if(available == ConnectionResult.SUCCESS){
-            //everything is fine and the user can make map requests
-            Log.d(TAG, "isServicesOK: Google Play Services is working");
-            return true;
-        }
-        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
-            //an error occured but we can resolve it
-            Log.d(TAG, "isServicesOK: an error occured but we can fix it");
-            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(Menu.this, available, ERROR_DIALOG_REQUEST);
-            dialog.show();
-        }else{
-            Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
-        }
-        return false;
-    }
 
 
     public void onBackPressed() {

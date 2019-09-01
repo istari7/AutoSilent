@@ -42,12 +42,12 @@ public class CreateTime extends AppCompatActivity {
         fri = (CheckBox) findViewById(R.id.cbFri);
         sat = (CheckBox) findViewById(R.id.cbSat);
         save =  findViewById(R.id.bSave);
-        cancel =  findViewById(R.id.beCancel);
+
 
         DatabaseHelper entry = new DatabaseHelper(CreateTime.this);
         entry.open();
         checkName = new ArrayList<String>();
-        checkName = entry.tgetname();
+        checkName = entry.tgetname(); //get all names from db and save in checkname array
         entry.close();
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +80,10 @@ public class CreateTime extends AppCompatActivity {
                     sqlrep = sqlrep + "7";
                 }
                 sqlrep.trim();
-                if(!sqlname.equals("")){
-                    if(!checkName.contains(sqlname)){
+                if(!sqlname.equals(""))//Not empty
+                {
+                    if(!checkName.contains(sqlname))//Not in database already
+                    {
                         if(sqlstart != sqlend){
                             DatabaseHelper entry = new DatabaseHelper(CreateTime.this);
                             entry.open();
@@ -154,21 +156,17 @@ public class CreateTime extends AppCompatActivity {
                 }
             }
         });
-        cancel.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent openCreate = new Intent(CreateTime.this,Menu.class);
-                startActivity(openCreate);
-                finish();
-            }
-        });
 
     }
 
     @Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
+        finish();
+        Intent openCreate = new Intent(CreateTime.this,Menu.class);
+        startActivity(openCreate);
+
     }
 
     @Override

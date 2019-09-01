@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    Intent openMenu = new Intent(MainActivity.this, Menu.class);
+                    Intent openMenu = new Intent(MainActivity.this, Main2Activity.class);
                     startActivity(openMenu);
                     finish();
                 }

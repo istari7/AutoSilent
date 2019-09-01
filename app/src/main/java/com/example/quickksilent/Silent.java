@@ -23,7 +23,6 @@ public class Silent{
             mPhoneIsSilent = true;
         else
             mPhoneIsSilent = false;
-
     }
 
     public void switchToSilentMode() {

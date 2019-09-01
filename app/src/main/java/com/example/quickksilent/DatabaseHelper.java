@@ -17,21 +17,18 @@ public class DatabaseHelper {
     public static final String KEY_TEND = "time_end";
     public static final String KEY_TREP = "time_repeat";
 
-    public static final String KEY_ROWID = "_id";
-    public static final String KEY_NAME = "location_name";
-    public static final String KEY_LOC = "location_geopoint";
-    public static final String KEY_RAD = "location_radius";
 
-    private static final String DATABASE_NAME = "mobile_mode_enforcer";
+
+    private static final String DATABASE_NAME = "autosilent";
     private static final String DATABASE_TTABLE = "time";
     private static final String DATABASE_TABLE = "location";
     private static final int DATABASE_VERSION = 1;
 
-    private DbHelper ourHelper;
+    public DbHelper ourHelper;
     private final Context ourContext;
     private SQLiteDatabase ourDatabase;
 
-    private static class DbHelper extends SQLiteOpenHelper {
+    public static class DbHelper extends SQLiteOpenHelper {
 
         public DbHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,12 +46,8 @@ public class DatabaseHelper {
                     KEY_TREP+" TEXT);"
             );
 
-            db.execSQL("CREATE TABLE "+DATABASE_TABLE+" ("+
-                    KEY_ROWID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                    KEY_NAME+" TEXT NOT NULL, "+
-                    KEY_LOC+" TEXT NOT NULL, "+
-                    KEY_RAD+" TEXT NOT NULL);"
-            );
+
+
         }
 
         @Override
@@ -62,6 +55,7 @@ public class DatabaseHelper {
             // TODO Auto-generated method stub
             db.execSQL("DROP TABLE IF EXISTS "+DATABASE_TTABLE);
             db.execSQL("DROP TABLE IF EXISTS "+DATABASE_TABLE);
+
             onCreate(db);
         }
 
@@ -163,74 +157,6 @@ public class DatabaseHelper {
         ourDatabase.delete(DATABASE_TTABLE, KEY_TNAME+" LIKE '"+name+"'", null);
     }
 
-    public long createEntry(String sqlname, String sqllocation, String sqlradius) {
-        // TODO Auto-generated method stub
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_NAME, sqlname);
-        cv.put(KEY_LOC, sqllocation);
-        cv.put(KEY_RAD, sqlradius);
-        return ourDatabase.insert(DATABASE_TABLE, null, cv);
-    }
 
-    public ArrayList<String> getname(){
-
-        String[] columns = new String[]{KEY_ROWID,KEY_NAME,KEY_LOC,KEY_RAD};
-        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
-
-        int iName = c.getColumnIndex(KEY_NAME);
-        ArrayList<String> name = new ArrayList<String>();
-
-        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
-            name.add(c.getString(iName));
-        }
-        c.close();
-        return name;
-    }
-
-    public ArrayList<String> getlocrad(){
-
-        String[] columns = new String[]{KEY_ROWID,KEY_NAME,KEY_LOC,KEY_RAD};
-        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
-
-        int iLoc = c.getColumnIndex(KEY_LOC);
-        int iRad = c.getColumnIndex(KEY_RAD);
-
-        ArrayList<String> locrad = new ArrayList<String>();
-
-        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
-            locrad.add(c.getString(iLoc)+"/"+c.getString(iRad));
-        }
-        c.close();
-        return locrad;
-    }
-
-    public String getdata(String name){
-
-        String query=" SELECT " + KEY_LOC+" , "+KEY_RAD +" FROM " + DATABASE_TABLE + " WHERE " + KEY_NAME +" LIKE '" + name +"';";
-        Cursor c = ourDatabase.rawQuery(query, null);
-        String result = "";
-        int loc = c.getColumnIndex(KEY_LOC);
-        int rad = c.getColumnIndex(KEY_RAD);
-        for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
-        {
-            result = c.getString(loc) + "/" + c.getString(rad);
-        }
-        c.close();
-        return 	result;
-    }
-
-    public void updateEntry(String name,String newname,String newlocation, String newradius){
-
-        ContentValues cvupdate = new ContentValues();
-        cvupdate.put(KEY_NAME, newname);
-        cvupdate.put(KEY_LOC, newlocation);
-        cvupdate.put(KEY_RAD, newradius);
-        ourDatabase.update(DATABASE_TABLE, cvupdate, KEY_NAME+" LIKE '"+name+"'", null);
-
-    }
-
-    public void deleteEntry(String name){
-        ourDatabase.delete(DATABASE_TABLE, KEY_NAME+" LIKE '"+name+"'", null);
-    }
 
 }

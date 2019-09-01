@@ -46,7 +46,7 @@ public class EditTime extends AppCompatActivity {
         sat = (CheckBox) findViewById(R.id.cbSat);
         update =  findViewById(R.id.beUpdate);
         delete = findViewById(R.id.beDelete);
-        cancel = findViewById(R.id.beCancel);
+
 
         DatabaseHelper entry = new DatabaseHelper(EditTime.this);
         entry.open();
@@ -302,15 +302,7 @@ public class EditTime extends AppCompatActivity {
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent openTimeView = new Intent(EditTime.this,Menu.class);
-                startActivity(openTimeView);
-                finish();
-            }
-        });
     }
 
     @Override
