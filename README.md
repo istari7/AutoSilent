@@ -45,7 +45,7 @@ The project utilises Google Web API's extensively and several key components wil
 ## 3. Firebase List in the App
 
 ![Image of Firebase List](https://github.com/istari7/QuickkSilent/blob/FInal-iter-1/firebase_list.png)
-**Here the lcoation is extracted from the Google Firebase and geofences are active. If a person comes within a 400m radius of the location, the phone becomes silent. Once the user exits the location, the phone becomes normal again.**
+**Here the location is extracted from the Google Firebase and geofences are active. If a person comes within a 400m radius of the location, the phone becomes silent. Once the user exits the location, the phone becomes normal again.**
 
 ## 4. Firebase Data Model
 
